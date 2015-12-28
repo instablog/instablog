@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ post.title }}
+                </div>
+                <div class="panel-body">
+                    {% if post.photo %}
+                        <p class="text-center">
+                            <img src="{{ post.photo.url }}" />
+                        </p>
+                    {% endif %}
+
+                    {{ post.content|linebreaks }}
+
+                </div>
+            </div>
+
+            <ul>
+            {% for comment in post.comment_set.all %}
+                <li>
+                    {{ comment.content }}
+                    <a href="{% url "blog:comment_edit" post.pk comment.pk %}">E</a>
+                    <a href="{% url "blog:comment_delete" post.pk comment.pk %}">D</a>
+                </li>
+            {% endfor %}
+            </ul>
+
+            <div class="icons text-center">
+                <a href="{% url "blog:index" %}" class="btn glyphicon glyphicon-list-alt">list</a>
+                <a href="{% url "blog:comment_new" post.pk%}" class="btn glyphicon glyphicon-pencil">comment</a>
+            {% if post.author == request.user %}
+                <a href="{% url "blog:edit" post.pk %}" class="btn glyphicon glyphicon-edit">edit</a>
+                <a href="{% url "blog:delete" post.pk %}" class="btn glyphicon glyphicon-trash">delete</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

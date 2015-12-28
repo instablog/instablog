@@ -1,0 +1,2 @@
+*.pyc
+instablog/db.sqlite3

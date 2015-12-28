@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h4>{{ user }}'s Profile</h4>
+                <h3>accounts/profile_detail.html</h3>
+                <h3>
+                    Biography
+                    <a href="{% url "accounts.views.profile_edit" %}"><small>edit</small></a>
+                </h3>
+
+                {{ profile.biography|linebreaks }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

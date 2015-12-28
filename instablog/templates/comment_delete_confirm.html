@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="alert alert-danger">
+                    Are you sure to delete it?
+                </div>
+
+                <p>{{ comment.content }}</p>
+
+                <input type="submit" value="yes" class="btn btn-danger" />
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

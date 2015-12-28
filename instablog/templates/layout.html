@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Instablog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css" />
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  {% block extra_head %}{% endblock %}
+</head>
+
+
+
+<body>
+<div id="header" class="smallheader">
+
+
+<a href="{% url 'blog:index' %}"><h1>Instablog</h1></a>
+  <div class="links">
+    {% block navbar_right %}
+      {% if user.is_authenticated %}
+        <span class="link"><a href="{% url 'blog:new' %}">New</a></span>
+        <span class="link"><a href="{% url 'accounts.views.profile_detail' %}">Profile</a></span>
+        <span class="link"><a href="/accounts/logout/?next={{ request.path }}">Logout</a></span>
+      {% else %}
+        <span class="link"><a href="/accounts/login/?next={{ request.path }}">Login</a></span>
+        <span class="link"><a href="/accounts/signup/?next={{ request.path }}">Signup</a></span>
+      {% endif %}
+    {% endblock %}
+  </div>
+
+  <nav id="nav-icon4">
+    <span></span>
+    <span></span>
+    <span></span>
+  </nav>
+
+</div>
+
+
+<div id="wrapper" class="bgcolor">
+  {% if messages %}
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12">
+              {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+  {% endif %}
+
+  {% block content %}
+  {% endblock %}
+</div>
+
+<h3>
+  site built Python web framework <a href="http://djangoproject.com" target="_blank">Django</a><br/>
+  <a href="mailto:plusbeauxjours@gmail.com" target="_blank">plusbeauxjours@gmail.com</a>
+</h3>
+
+<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+<script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+<script src="{% static "js/index.js" %}"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block navbar_brand %}
+    <a class="navbar-brand" href="{% url "blog:author_home" author.username %}">{{ author }}'s blog</a>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover table-bordered">
+        {% for post in post_list %}
+        <tr>
+            <td>
+                <a href="{% url "blog:detail" post.author.username post.pk %}">
+                    {{ post.title }}
+                </a>
+            </td>
+            <td>{{ post.updated_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{% url "blog:index" %}" class="btn glyphicon glyphicon-list-alt">list</a>
+{% endblock %}
