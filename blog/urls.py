@@ -16,8 +16,8 @@ urlpatterns = [
     # url(r'^(?P<pk>\d+)/comments/new/$', views.comment_new, name='comment_new'),
     # url(r'^(?P<post_pk>\d+)/comments/(?P<pk>\d+)/edit/$', views.comment_edit, name='comment_edit'),
     # url(r'^(?P<post_pk>\d+)/comments/(?P<pk>\d+)/delete/$', views.comment_delete, name='comment_delete'),
-    url(r'^author_list/$', views.author_list, name='author_list'),
-    url(r'^(?P<username>\w+)/$', views.author_home, name='author_home'),
+    # url(r'^author_list/$', views.author_list, name='author_list'),
+    # url(r'^(?P<username>\w+)/$', views.author_home, name='author_home'),
 ]
 
 urlpatterns += [
@@ -32,6 +32,6 @@ urlpatterns += [
     url(r'^(?P<pk>\d+)/comments/new/$', views_cbv.comment_new, name='comment_new'),
     url(r'^(?P<post_pk>\d+)/comments/(?P<pk>\d+)/edit/$', views_cbv.comment_edit, name='comment_edit'),
     url(r'^(?P<post_pk>\d+)/comments/(?P<pk>\d+)/delete/$', views_cbv.comment_delete, name='comment_delete'),
-    # url(r'^author_list/$', views_cbv.author_list, name='author_list'),
-    # url(r'^(?P<username>\w+)/$', views_cbv.author_home, name='author_home'),
+    url(r'^author_list/$', views_cbv.author_list, name='author_list'),
+    url(r'^(?P<username>\w+)/$', views_cbv.author_home, name='author_home'),
 ]

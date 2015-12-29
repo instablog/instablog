@@ -19,7 +19,7 @@ from blog.models import Comment
 from blog.forms import PostForm
 from blog.forms import CommentForm
 
-
+from instablog.thumbnail import make_thumbnail
 
 User = get_user_model()
 
@@ -38,7 +38,7 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/index.html'
 
-index = login_required(PostListView.as_view())
+index = PostListView.as_view()
 
 
 
@@ -64,6 +64,8 @@ class PostCreateView(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
+        self.object = form.save()
+        make_thumbnail(self.object.photo.path, 400, 400)
         return super(PostCreateView, self).form_valid(form)
 
 new = login_required(PostCreateView.as_view())
@@ -161,6 +163,5 @@ class AuthorHomeView(ListView):
         return context
 
 author_home = AuthorHomeView.as_view()
-
 
 

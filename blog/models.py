@@ -10,7 +10,7 @@ from django.db.models.signals import pre_save
 from instablog.validators import jpeg_validator
 from instablog.image import receiver_with_image_field
 from instablog.file import random_name_with_file_field
-# from instablog.thumbnail import make_thumbnail
+from instablog.thumbnail import make_thumbnail
 
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
@@ -42,8 +42,8 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail', args=[self.author.username, self.uuid.hex])
 
-    # def get_thumbnail_url(self):
-        # return make_thumbnail(self.image.path, 400, 400)
+    def get_thumbnail_url(self):
+        return make_thumbnail(self.photo.path, 400, 400)
 
     class Meta:
         ordering = ['-created_at']

@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% load bootstrap3 thumbnail %}
+{% load bootstrap3 %}
 
 {% block navbar_left %}
     <li><a><span class="label label-info">{{ count }}</span></a></li>
@@ -15,9 +15,7 @@
                         {% if not post.photo %}
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="400" height="400" class="img-rounded" />
                         {% elif post.photo %}
-                            {% thumbnail post.photo "400x400" crop="center" as im %}
-                                <img src="{{ im.url }}" width="400" height="400" class="img-rounded" />
-                            {% endthumbnail %}
+                                <img src="{{ post.photo.url }}" />
                         {% else %}
                             <p>no image</p>
 
