@@ -18,7 +18,17 @@ from blog.forms import CommentForm
 
 from django.contrib.auth import get_user_model
 
+
+
 User = get_user_model()
+
+
+
+def author_list(request):
+    author_list = User.objects.all()
+    return render(request, 'blog/author_list.html', {
+        'list': author_list,
+    })
 
 
 
@@ -147,3 +157,10 @@ def comment_delete(request, post_pk, pk):
     })
 
 
+def author_home(request, username):
+    author = get_object_or_404(User, username=username)
+    post_list = Post.objects.filter(author=author)
+    return render(request, 'blog/author_post_list.html', {
+                  'author': author,
+                  'post_list': post_list,
+                  })
