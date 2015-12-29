@@ -25,7 +25,7 @@ h3{
 }
   .smallheader{
     height: 100px;
-  }
+}
 a{
   font-size: 1em;
   color: #000003;
@@ -164,7 +164,18 @@ nav{
   user-select: none;
   word-spacing: 5px;
 }
-
 .icons{
 font-size: 0.8em;
+}
+
+.thumbnail .caption h5 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-wrap;
+}
+.thumbnail .caption {
+    height: 50px;
 }
